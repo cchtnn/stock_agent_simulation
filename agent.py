@@ -1,10 +1,16 @@
 import math
 import time
+import os
 import openai
 import tiktoken
 import random
 import requests
 import google.generativeai as genai
+from langchain_groq import ChatGroq
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 import util
 from log.custom_logger import log
@@ -32,21 +38,6 @@ def random_init(stock_a_initial, stock_b_initial):
         "repayment_date": random.choice(util.REPAYMENT_DAYS)
     }
     return stock_a, stock_b, cash, debt
-# def random_init(stock_initial_price):
-#     stock, cash, debt_amount = 0.0, 0.0, 0.0
-#     while stock * stock_initial_price + cash < util.MIN_INITIAL_PROPERTY \
-#             or stock * stock_initial_price + cash > util.MAX_INITIAL_PROPERTY \
-#             or debt_amount > stock * stock_initial_price + cash:
-#         stock = int(random.uniform(0, util.MAX_INITIAL_PROPERTY / stock_initial_price))
-#         cash = random.uniform(0, util.MAX_INITIAL_PROPERTY)
-#         debt_amount = random.uniform(0, util.MAX_INITIAL_PROPERTY)
-#     debt = {
-#         "loan": "yes",
-#         "amount": debt_amount,
-#         "loan_type": random.randint(0, len(util.LOAN_TYPE)),
-#         "repayment_date": random.choice(util.REPAYMENT_DAYS)
-#     }
-#     return stock, cash, debt
 
 
 class Agent:
@@ -57,8 +48,7 @@ class Agent:
         self.character = random.choice(["Conservative", "Aggressive", "Balanced", "Growth-Oriented"])
 
         self.stock_a_amount, self.stock_b_amount, self.cash, init_debt = random_init(stock_a_price, stock_b_price)
-        #self.stock_b_amount = 0  # stock 以手为单位存储，一手=10股，股价其实是一手的价格
-        self.init_proper = self.get_total_proper(stock_a_price, stock_b_price)  # 初始资产 后续借贷不超过初始资产
+        self.init_proper = self.get_total_proper(stock_a_price, stock_b_price)
 
         self.action_history = [[] for _ in range(util.TOTAL_DATE)]
         self.chat_history = []
@@ -71,6 +61,59 @@ class Agent:
             return self.run_api_gpt(prompt, temperature)
         elif 'gemini' in self.model:
             return self.run_api_gemini(prompt, temperature)
+        elif 'llama' in self.model.lower():
+            return self.run_api_llama(prompt, temperature)
+
+    def run_api_llama(self, prompt, temperature: float = 1):
+        """
+        Run API call using ChatGroq Llama model
+        """
+        try:
+            llm = ChatGroq(
+                model="llama-3.1-8b-instant",
+                api_key=os.getenv("GROQ_API_KEY"),
+                temperature=temperature,
+                max_tokens=4192,
+                timeout=60,
+                max_retries=2,
+            )
+            
+            # Convert chat history to langchain format
+            langchain_messages = []
+            for msg in self.chat_history:
+                if msg["role"] == "user":
+                    langchain_messages.append(("human", msg["content"]))
+                elif msg["role"] == "assistant" or msg["role"] == "model":
+                    langchain_messages.append(("assistant", msg["content"]))
+            
+            # Add current prompt
+            langchain_messages.append(("human", prompt))
+            
+            max_retry = 2
+            retry = 0
+            
+            while retry < max_retry:
+                try:
+                    response = llm.invoke(langchain_messages)
+                    response_text = response.content
+                    
+                    # Update chat history
+                    self.chat_history.append({"role": "user", "content": prompt})
+                    self.chat_history.append({"role": "assistant", "content": response_text})
+                    
+                    return response_text
+                    
+                except Exception as e:
+                    log.logger.warning("Llama API retry...{}".format(e))
+                    retry += 1
+                    time.sleep(1)
+            
+            log.logger.error("ERROR: LLAMA API FAILED. SKIP THIS INTERACTION.")
+            return ""
+            
+        except Exception as e:
+            log.logger.error("ERROR: LLAMA API INITIALIZATION FAILED: {}".format(e))
+            return ""
 
     def run_api_gemini(self, prompt, temperature: float = 1):
         genai.configure(api_key=util.GOOGLE_API_KEY, transport='rest')
@@ -94,16 +137,12 @@ class Agent:
         log.logger.error("ERROR: GEMINI API FAILED. SKIP THIS INTERACTION.")
         return ""
 
-
     def run_api_gpt(self, prompt, temperature: float = 1):
         openai.api_key = util.OPENAI_API_KEY
         client = openai.OpenAI(api_key=openai.api_key)
         self.chat_history.append({"role": "user", "content": prompt})
         max_retry = 2
         retry = 0
-
-        # just cut off the overflow tokens
-        # tokens = encoding.encode(self.chat_history)
 
         while retry < max_retry:
             try:
@@ -267,7 +306,6 @@ class Agent:
                 "cash": self.cash
             }
 
-
         try_times = 0
         MAX_TRY_TIMES = 3
         resp = self.run_api(format_prompt(prompt, inputs))
@@ -294,22 +332,10 @@ class Agent:
         if action["action_type"] == "buy":
             #self.action_history[date].append(action)
             log.logger.info("INFO: Agent {} decide to action: {}".format(self.order, action))
-            # if action["stock"] == "stock_a":
-            #     self.stock_a_amount += action["amount"]
-            #     self.cash -= action["amount"] * stock_a.get_price()
-            # else:
-            #     self.stock_b_amount += action["amount"]
-            #     self.cash -= action["amount"] * stock_b.get_price()
             return action
         elif action["action_type"] == "sell":
             #self.action_history[date].append(action)
             log.logger.info("INFO: Agent {} decide to action: {}".format(self.order, action))
-            # if action["stock"] == "stock_a":
-            #     self.stock_a_amount -= action["amount"]
-            #     self.cash += action["amount"] * stock_a.get_price()
-            # else:
-            #     self.stock_b_amount -= action["amount"]
-            #     self.cash += action["amount"] * stock_b.get_price()
             return action
         elif action["action_type"] == "no":
             log.logger.info("INFO: Agent {} decide not to action".format(self.order))
@@ -361,7 +387,6 @@ class Agent:
         if self.cash < 0:
             self.is_bankrupt = True
 
-
     def interest_payment(self):
         if self.quit:
             return
@@ -377,7 +402,6 @@ class Agent:
         total_value_of_stock = self.stock_a_amount * stock_a_price + self.stock_b_amount * stock_b_price
         if total_value_of_stock + self.cash < 0:
             log.logger.warning(f"Agent {self.order} bankrupt. ")
-                               #f"Action history: " + str(self.action_history))
             return True
         if stock_a_price * self.stock_a_amount >= -self.cash:
             sell_a = math.ceil(-self.cash / stock_a_price)
@@ -423,5 +447,3 @@ class Agent:
                 return {"buy_A": "no", "buy_B": "no", "sell_A": "no", "sell_B": "no", "loan": "no"}
             format_check, fail_response, estimate = self.secretary.check_estimate(resp)
         return estimate
-
-

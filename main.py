@@ -1,3 +1,5 @@
+# Githubn link: https://github.com/MingyuJ666/Stockagent
+
 import argparse
 import random
 import pandas as pd
@@ -202,7 +204,9 @@ def simulation(args):
 
 
 if __name__ == "__main__":
+    # python main.py --model MODEL_NAME
+    # python main.py --model llama
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model", type=str, default="gemini-pro", help="model name")
+    parser.add_argument("--model", type=str, default="llama", help="model name")
     args = parser.parse_args()
     simulation(args)

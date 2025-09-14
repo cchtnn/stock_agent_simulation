@@ -16,7 +16,8 @@ class TradeRecord:
         if os.path.isfile(file_name):
             existing_df = pd.read_excel(file_name)
         else:
-            existing_df = pd.DataFrame(columns=["交易日", "交易阶段", "股票类型", "买入交易员", "卖出交易员", "交易数量", "交易价格"])
+            # existing_df = pd.DataFrame(columns=["交易日", "交易阶段", "股票类型", "买入交易员", "卖出交易员", "交易数量", "交易价格"])
+            existing_df = pd.DataFrame(columns=["Trading Day", "Trading Phase", "Stock Type", "Buyer", "Seller", "Trading Quantity", "Trading Price"])
 
         # 将新的交易记录合并到现有DataFrame
         new_records = [[self.date, self.session, self.stock_type, self.buyer, self.seller, self.quantity, self.price]]
@@ -44,8 +45,8 @@ class StockRecord:
         if os.path.isfile(file_name):
             existing_df = pd.read_excel(file_name)
         else:
-            existing_df = pd.DataFrame(columns=["交易日", "第几个交易阶段", "阶段结束后股票A价格", "阶段结束后股票B价格"])
-
+            # existing_df = pd.DataFrame(columns=["交易日", "第几个交易阶段", "阶段结束后股票A价格", "阶段结束后股票B价格"])
+            existing_df = pd.DataFrame(columns=["Trading day", "Trading phase", "Price of stock A after the phase ends", "Price of stock B after the phase ends"])
         # 将新的交易记录合并到现有DataFrame
         new_records = [[self.date, self.session, self.stock_a_price, self.stock_b_price]]
         new_df = pd.DataFrame(new_records, columns=existing_df.columns)
@@ -84,11 +85,18 @@ class AgentRecordDaily:
         self.will_sell_b = js["sell_B"]
 
     def write_to_excel(self, file_name="res/agent_day_record.xlsx"):
+        # Create directory if it doesn't exist
+        directory = os.path.dirname(file_name)
+        if directory and not os.path.exists(directory):
+            os.makedirs(directory)
         if os.path.isfile(file_name):
             existing_df = pd.read_excel(file_name)
         else:
-            existing_df = pd.DataFrame(columns=["交易员", "交易日", "是否贷款", "贷款类型", "贷款数量",
-                                                "明日是否贷款", "明日是否买入A", "明日是否卖出A", "明日是否买入B", "明日是否卖出B"])
+            # existing_df = pd.DataFrame(columns=["交易员", "交易日", "是否贷款", "贷款类型", "贷款数量",
+            #                                     "明日是否贷款", "明日是否买入A", "明日是否卖出A", "明日是否买入B", "明日是否卖出B"])
+            existing_df = pd.DataFrame(columns=["Trader", "Trading Day", "Is Loan", "Loan Type", "Loan Amount",
+                                                "Will Loan Tomorrow", "Will Buy A Tomorrow", "Will Sell A Tomorrow", 
+                                                "Will Buy B Tomorrow", "Will Sell B Tomorrow"])
 
         # 将新的交易记录合并到现有DataFrame
         new_records = [[self.agent, self.date, self.if_loan, self.loan_type, self.loan_amount,
@@ -117,18 +125,25 @@ class AgentRecordSession:
             self.amount = action_json["amount"]
             self.price = action_json["price"]
 
-    def write_to_excel(self, file_name="res/agent_session_record.xlsx"):
+    def write_to_excel(self, file_name="res/agent_session_record.xlsx"):  # Changed filename to avoid conflict
+        # Create directory if it doesn't exist
+        directory = os.path.dirname(file_name)
+        if directory and not os.path.exists(directory):
+            os.makedirs(directory)
+            
         if os.path.isfile(file_name):
             existing_df = pd.read_excel(file_name)
         else:
-            existing_df = pd.DataFrame(columns=["交易员", "交易日", "交易阶段", "交易前资产总额",
-                                                "交易前持有现金", "交易前持有的A股价值", "交易前持有的B股价值",
-                                                "挂单类型", "挂单股票类别", "挂单数量", "挂单价格"])
+            # Create the correct columns for agent session records
+            existing_df = pd.DataFrame(columns=["Trader", "Trading Day", "Trading Stage", "Total Assets Before Trade",
+                                               "Cash Held Before Trade", "Value of A Shares Held Before Trade", 
+                                               "Value of B Shares Held Before Trade", "Order Type", "Order Stock Category", 
+                                               "Order Quantity", "Order Price"])
 
         # 将新的交易记录合并到现有DataFrame
         new_records = [[self.agent, self.date, self.session, self.proper, self.cash,
-                        self.stock_a_value, self.stock_b_value, self.action_type, self.action_stock,
-                        self.amount, self.price]]
+                self.stock_a_value, self.stock_b_value, self.action_type, self.action_stock,
+                self.amount, self.price]]
         new_df = pd.DataFrame(new_records, columns=existing_df.columns)
         all_records_df = pd.concat([existing_df, new_df], ignore_index=True)
 

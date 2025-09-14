@@ -3064,3 +3064,62 @@ Explanation:
 2025-09-07 13:23:47,067 - Stocklogger - WARNING - Llama API retry...Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01j8s5tj94e269fnwpzmceejm5` service tier `on_demand` on tokens per day (TPD): Limit 500000, Used 499405, Requested 962. Please try again in 1m3.291399999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
 2025-09-07 13:23:48,082 - Stocklogger - ERROR - ERROR: LLAMA API FAILED. SKIP THIS INTERACTION.
 2025-09-07 13:23:48,712 - Stocklogger - WARNING - Llama API retry...Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01j8s5tj94e269fnwpzmceejm5` service tier `on_demand` on tokens per day (TPD): Limit 500000, Used 499396, Requested 959. Please try again in 1m1.219s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2025-09-14 07:13:14,044 - Stocklogger - DEBUG - Agents initial...
+2025-09-14 07:13:14,044 - Stocklogger - DEBUG - cash: 1755341.072309417, stock a: 27588, stock b:11453, debt: [{'loan': 'yes', 'amount': 752291.6128088508, 'loan_type': 1, 'repayment_date': 88}]
+2025-09-14 07:13:14,044 - Stocklogger - DEBUG - cash: 2536767.9877603767, stock a: 7205, stock b:30747, debt: [{'loan': 'yes', 'amount': 2524592.199315133, 'loan_type': 2, 'repayment_date': 44}]
+2025-09-14 07:13:14,044 - Stocklogger - DEBUG - cash: 2748750.9755530357, stock a: 14629, stock b:30154, debt: [{'loan': 'yes', 'amount': 1263960.3885450608, 'loan_type': 1, 'repayment_date': 44}]
+2025-09-14 07:13:14,044 - Stocklogger - DEBUG - cash: 710724.4112999944, stock a: 58007, stock b:50640, debt: [{'loan': 'yes', 'amount': 2410457.230969386, 'loan_type': 0, 'repayment_date': 66}]
+2025-09-14 07:13:14,044 - Stocklogger - DEBUG - cash: 1968901.5956742018, stock a: 32923, stock b:17412, debt: [{'loan': 'yes', 'amount': 245790.14978876547, 'loan_type': 2, 'repayment_date': 242}]
+2025-09-14 07:13:14,044 - Stocklogger - DEBUG - cash: 966443.0317981564, stock a: 61736, stock b:33312, debt: [{'loan': 'yes', 'amount': 3943130.186795567, 'loan_type': 1, 'repayment_date': 88}]
+2025-09-14 07:13:14,044 - Stocklogger - DEBUG - cash: 366366.55551884114, stock a: 18833, stock b:416, debt: [{'loan': 'yes', 'amount': 392571.1339638766, 'loan_type': 2, 'repayment_date': 22}]
+2025-09-14 07:13:14,044 - Stocklogger - DEBUG - cash: 358079.6215628695, stock a: 30175, stock b:68276, debt: [{'loan': 'yes', 'amount': 2585738.9172161687, 'loan_type': 2, 'repayment_date': 66}]
+2025-09-14 07:13:14,044 - Stocklogger - DEBUG - cash: 503317.20805080695, stock a: 56825, stock b:23496, debt: [{'loan': 'yes', 'amount': 1202600.7925286342, 'loan_type': 0, 'repayment_date': 66}]
+2025-09-14 07:13:14,044 - Stocklogger - DEBUG - cash: 2970760.042002605, stock a: 14163, stock b:29462, debt: [{'loan': 'yes', 'amount': 536828.2297430349, 'loan_type': 1, 'repayment_date': 220}]
+2025-09-14 07:13:14,044 - Stocklogger - DEBUG - cash: 1559752.9568245339, stock a: 18138, stock b:70223, debt: [{'loan': 'yes', 'amount': 3613749.531817058, 'loan_type': 2, 'repayment_date': 44}]
+2025-09-14 07:13:14,044 - Stocklogger - DEBUG - cash: 725271.0394749707, stock a: 14692, stock b:71215, debt: [{'loan': 'yes', 'amount': 2871983.65531284, 'loan_type': 0, 'repayment_date': 154}]
+2025-09-14 07:13:14,044 - Stocklogger - DEBUG - cash: 1945880.2015262765, stock a: 24098, stock b:37429, debt: [{'loan': 'yes', 'amount': 2019054.6123221193, 'loan_type': 0, 'repayment_date': 176}]
+2025-09-14 07:13:14,044 - Stocklogger - DEBUG - cash: 483332.89687531255, stock a: 95987, stock b:24702, debt: [{'loan': 'yes', 'amount': 2217708.7804424423, 'loan_type': 2, 'repayment_date': 154}]
+2025-09-14 07:13:14,044 - Stocklogger - DEBUG - cash: 459485.6040274026, stock a: 49017, stock b:40761, debt: [{'loan': 'yes', 'amount': 783152.5633522668, 'loan_type': 0, 'repayment_date': 154}]
+2025-09-14 07:13:14,044 - Stocklogger - DEBUG - cash: 2416671.6902485215, stock a: 16264, stock b:7692, debt: [{'loan': 'yes', 'amount': 663749.9099566813, 'loan_type': 1, 'repayment_date': 110}]
+2025-09-14 07:13:14,057 - Stocklogger - DEBUG - cash: 808529.8726120949, stock a: 72850, stock b:15020, debt: [{'loan': 'yes', 'amount': 2099587.263129683, 'loan_type': 1, 'repayment_date': 220}]
+2025-09-14 07:13:14,057 - Stocklogger - DEBUG - cash: 265573.5077084026, stock a: 97079, stock b:42073, debt: [{'loan': 'yes', 'amount': 3002918.261939587, 'loan_type': 0, 'repayment_date': 66}]
+2025-09-14 07:13:14,058 - Stocklogger - DEBUG - cash: 369403.0463566411, stock a: 100843, stock b:37079, debt: [{'loan': 'yes', 'amount': 121541.8675471469, 'loan_type': 2, 'repayment_date': 88}]
+2025-09-14 07:13:14,058 - Stocklogger - DEBUG - cash: 1732317.346991013, stock a: 16894, stock b:38966, debt: [{'loan': 'yes', 'amount': 3378255.1746620233, 'loan_type': 1, 'repayment_date': 242}]
+2025-09-14 07:13:14,058 - Stocklogger - DEBUG - cash: 2324058.2795736305, stock a: 10140, stock b:356, debt: [{'loan': 'yes', 'amount': 2308058.4918467607, 'loan_type': 0, 'repayment_date': 176}]
+2025-09-14 07:13:14,060 - Stocklogger - DEBUG - cash: 440050.5341791827, stock a: 96828, stock b:1711, debt: [{'loan': 'yes', 'amount': 2281190.3937901566, 'loan_type': 0, 'repayment_date': 66}]
+2025-09-14 07:13:14,060 - Stocklogger - DEBUG - cash: 1400371.525436534, stock a: 53055, stock b:49543, debt: [{'loan': 'yes', 'amount': 3354059.5521010524, 'loan_type': 2, 'repayment_date': 110}]
+2025-09-14 07:13:14,060 - Stocklogger - DEBUG - cash: 1363839.1209480017, stock a: 47215, stock b:27702, debt: [{'loan': 'yes', 'amount': 158935.70567979297, 'loan_type': 1, 'repayment_date': 44}]
+2025-09-14 07:13:14,061 - Stocklogger - DEBUG - cash: 579759.0071403363, stock a: 43308, stock b:36107, debt: [{'loan': 'yes', 'amount': 972977.0552040157, 'loan_type': 0, 'repayment_date': 132}]
+2025-09-14 07:13:14,062 - Stocklogger - DEBUG - cash: 552901.8843544043, stock a: 104220, stock b:7492, debt: [{'loan': 'yes', 'amount': 192204.98092178628, 'loan_type': 2, 'repayment_date': 132}]
+2025-09-14 07:13:14,062 - Stocklogger - DEBUG - cash: 1618143.4264038936, stock a: 37192, stock b:52619, debt: [{'loan': 'yes', 'amount': 1005035.215060166, 'loan_type': 2, 'repayment_date': 264}]
+2025-09-14 07:13:14,062 - Stocklogger - DEBUG - cash: 2005628.7179049253, stock a: 46350, stock b:28406, debt: [{'loan': 'yes', 'amount': 774532.7731397889, 'loan_type': 0, 'repayment_date': 220}]
+2025-09-14 07:13:14,063 - Stocklogger - DEBUG - cash: 2743347.266226163, stock a: 7035, stock b:39126, debt: [{'loan': 'yes', 'amount': 1812349.5471905903, 'loan_type': 2, 'repayment_date': 88}]
+2025-09-14 07:13:14,065 - Stocklogger - DEBUG - cash: 519914.4702330949, stock a: 52429, stock b:23905, debt: [{'loan': 'yes', 'amount': 2202914.8460690067, 'loan_type': 1, 'repayment_date': 22}]
+2025-09-14 07:13:14,065 - Stocklogger - DEBUG - cash: 2318814.4740039087, stock a: 40448, stock b:27473, debt: [{'loan': 'yes', 'amount': 2091684.1987103645, 'loan_type': 1, 'repayment_date': 198}]
+2025-09-14 07:13:14,065 - Stocklogger - DEBUG - cash: 2137908.3315588487, stock a: 25815, stock b:1108, debt: [{'loan': 'yes', 'amount': 1040481.0557210558, 'loan_type': 1, 'repayment_date': 110}]
+2025-09-14 07:13:14,065 - Stocklogger - DEBUG - cash: 987591.3501290523, stock a: 29889, stock b:5984, debt: [{'loan': 'yes', 'amount': 753727.4959024554, 'loan_type': 1, 'repayment_date': 110}]
+2025-09-14 07:13:14,066 - Stocklogger - DEBUG - cash: 75187.25846388741, stock a: 84528, stock b:39223, debt: [{'loan': 'yes', 'amount': 3434638.8400636273, 'loan_type': 2, 'repayment_date': 110}]
+2025-09-14 07:13:14,066 - Stocklogger - DEBUG - cash: 897403.7717669109, stock a: 57800, stock b:3216, debt: [{'loan': 'yes', 'amount': 2403764.5337745654, 'loan_type': 1, 'repayment_date': 154}]
+2025-09-14 07:13:14,066 - Stocklogger - DEBUG - cash: 356942.0617310681, stock a: 33258, stock b:56338, debt: [{'loan': 'yes', 'amount': 3380656.609139923, 'loan_type': 0, 'repayment_date': 264}]
+2025-09-14 07:13:14,066 - Stocklogger - DEBUG - cash: 1897362.1547305507, stock a: 71120, stock b:19730, debt: [{'loan': 'yes', 'amount': 4399833.641059038, 'loan_type': 0, 'repayment_date': 66}]
+2025-09-14 07:13:14,067 - Stocklogger - DEBUG - cash: 1072681.1037989832, stock a: 98606, stock b:8144, debt: [{'loan': 'yes', 'amount': 3362181.078635846, 'loan_type': 2, 'repayment_date': 132}]
+2025-09-14 07:13:14,067 - Stocklogger - DEBUG - cash: 2067803.810231475, stock a: 36258, stock b:11308, debt: [{'loan': 'yes', 'amount': 189332.7326976224, 'loan_type': 2, 'repayment_date': 22}]
+2025-09-14 07:13:14,067 - Stocklogger - DEBUG - cash: 1263986.5806994543, stock a: 60832, stock b:18860, debt: [{'loan': 'yes', 'amount': 375287.9950485516, 'loan_type': 0, 'repayment_date': 88}]
+2025-09-14 07:13:14,072 - Stocklogger - DEBUG - cash: 2304106.5137984133, stock a: 48155, stock b:3114, debt: [{'loan': 'yes', 'amount': 1709540.7452347938, 'loan_type': 0, 'repayment_date': 198}]
+2025-09-14 07:13:14,073 - Stocklogger - DEBUG - cash: 3458810.0501733026, stock a: 35383, stock b:6716, debt: [{'loan': 'yes', 'amount': 4082975.2278001225, 'loan_type': 2, 'repayment_date': 154}]
+2025-09-14 07:13:14,073 - Stocklogger - DEBUG - cash: 399117.2795506154, stock a: 37259, stock b:38724, debt: [{'loan': 'yes', 'amount': 691495.0687142946, 'loan_type': 0, 'repayment_date': 220}]
+2025-09-14 07:13:14,073 - Stocklogger - DEBUG - cash: 2212747.5899627423, stock a: 25973, stock b:49784, debt: [{'loan': 'yes', 'amount': 2348174.79881075, 'loan_type': 1, 'repayment_date': 242}]
+2025-09-14 07:13:14,073 - Stocklogger - DEBUG - cash: 3471659.8377733114, stock a: 16076, stock b:8316, debt: [{'loan': 'yes', 'amount': 2430423.9040862205, 'loan_type': 1, 'repayment_date': 22}]
+2025-09-14 07:13:14,074 - Stocklogger - DEBUG - cash: 684702.3977537431, stock a: 48546, stock b:47040, debt: [{'loan': 'yes', 'amount': 2351601.8028414017, 'loan_type': 1, 'repayment_date': 88}]
+2025-09-14 07:13:14,074 - Stocklogger - DEBUG - cash: 1617537.5164573446, stock a: 21444, stock b:24337, debt: [{'loan': 'yes', 'amount': 1425746.805740319, 'loan_type': 2, 'repayment_date': 198}]
+2025-09-14 07:13:14,075 - Stocklogger - DEBUG - cash: 25285.341462359946, stock a: 20590, stock b:84500, debt: [{'loan': 'yes', 'amount': 3427112.208464842, 'loan_type': 0, 'repayment_date': 88}]
+2025-09-14 07:13:14,075 - Stocklogger - DEBUG - cash: 3220921.224670595, stock a: 24433, stock b:7599, debt: [{'loan': 'yes', 'amount': 1751734.245181419, 'loan_type': 2, 'repayment_date': 110}]
+2025-09-14 07:13:14,075 - Stocklogger - DEBUG - cash: 840201.0664272741, stock a: 68054, stock b:19860, debt: [{'loan': 'yes', 'amount': 2547604.0177953495, 'loan_type': 1, 'repayment_date': 264}]
+2025-09-14 07:13:14,076 - Stocklogger - DEBUG - --------Simulation Start!--------
+2025-09-14 07:13:14,076 - Stocklogger - DEBUG - --------DAY 1---------
+2025-09-14 07:13:15,512 - Stocklogger - INFO - INFO: Agent 0 decide not to loan
+2025-09-14 07:13:16,535 - Stocklogger - INFO - INFO: Agent 1 decide to loan: {'loan': 'yes', 'loan_type': 1, 'amount': 1458205.7884452436, 'repayment_date': 45}
+2025-09-14 07:13:17,354 - Stocklogger - INFO - INFO: Agent 2 decide to loan: {'loan': 'yes', 'loan_type': 1, 'amount': 30000, 'repayment_date': 45}
+2025-09-14 07:13:18,478 - Stocklogger - INFO - INFO: Agent 3 decide to loan: {'loan': 'yes', 'loan_type': 1, 'amount': 2000000.0, 'repayment_date': 45}
+2025-09-14 07:13:19,199 - Stocklogger - INFO - INFO: Agent 4 decide to loan: {'loan': 'yes', 'loan_type': 1, 'amount': 245790.14978876547, 'repayment_date': 45}
+2025-09-14 07:13:19,888 - Stocklogger - INFO - INFO: Agent 5 decide to loan: {'loan': 'yes', 'loan_type': 1, 'amount': 207872.84500258928, 'repayment_date': 45}
